@@ -99,7 +99,7 @@ DataStorage.prototype.hget = function (hash, key, callback) {
   }
 }
 
-DataStorage.prototype.getKeys = function (hash, callback) {
+DataStorage.prototype.hkeys = function (hash, callback) {
   var self = this
 
   if (self.hasRedis) {
