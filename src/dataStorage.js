@@ -35,7 +35,7 @@ DataStorage.prototype.init = function (cb) {
     }
   }
   if (typeof window !== 'undefined') return end()
-  if self.redisUrl {
+  if (self.redisUrl) {
     self.redisClient = redis.createClient(self.redisUrl)
   } else {
     self.redisClient = redis.createClient(self.redisPort, self.redisHost)
