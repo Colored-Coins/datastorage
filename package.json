@@ -1,6 +1,6 @@
 {
   "name": "data-storage",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Data storage using redis, filesystem or localstorage (for client side).",
   "main": "src/dataStorage.js",
   "dependencies": {
