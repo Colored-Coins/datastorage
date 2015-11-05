@@ -1,12 +1,12 @@
 {
   "name": "data-storage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Data storage using redis, filesystem or localstorage (for client side).",
   "main": "src/dataStorage.js",
   "dependencies": {
     "events": "^1.1.0",
     "jsonfile": "^2.2.2",
-    "mkpath": "^0.1.0",   
+    "mkpath": "^0.1.0",
     "path-extra": "git+https://git@github.com/Ullfis/node-path-extra.git",
     "redis": "^2.1.0",
     "util": "^0.10.3"
