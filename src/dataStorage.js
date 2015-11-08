@@ -41,7 +41,7 @@ DataStorage.prototype.init = function (cb) {
     self.redisClient = redis.createClient(self.redisPort, self.redisHost)
   }
   self.redisClient.on('error', function (err) {
-    // if (err) console.error('Redis err: ' + err)
+    if (err) console.error('Redis err: ' + err)
     self.redisClient.end()
     end()
   })

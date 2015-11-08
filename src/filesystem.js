@@ -22,10 +22,13 @@ function FileSystem (callback) {
       return callback(null, self)
     })
   } else {
-    self.conf = jf.readFileSync(self.configFile, {throws: false})
-    if (!self.conf) {
-      self.conf = {}
-      safePathWrite(self.configFile, self.conf)
+    try {
+      self.conf = jf.readFileSync(self.configFile)
+    } catch (e) {
+      if (e.code && e.code === 'ENOENT') {
+        self.conf = {}
+        safePathWrite(self.configFile, self.conf)
+      }
     }
   }
 }

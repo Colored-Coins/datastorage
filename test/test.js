@@ -2,14 +2,13 @@ var DataStorage = require('..')
 var assert = require('chai').assert
 
 describe('Test DataStorage', function () {
+  var ds
 
-	var ds
-
-	before(function (done) {
-		ds = new DataStorage()
-		ds.once('connect', done)
-		ds.init()
-	})
+  before(function (done) {
+    ds = new DataStorage()
+    ds.once('connect', done)
+    ds.init()
+  })
 
   it('Should set and get a value', function (done) {
     var key = Math.random().toString(36).substring(7)
@@ -17,9 +16,9 @@ describe('Test DataStorage', function () {
 
     ds.set(key, value)
     ds.get(key, function (err, val) {
-    	assert.ifError(err)
-    	assert.equal(val, value, 'value should be equal to original value.')
-    	done()
+      assert.ifError(err)
+      assert.equal(val, value, 'value should be equal to original value.')
+      done()
     })
   })
 
@@ -30,9 +29,9 @@ describe('Test DataStorage', function () {
 
     ds.hset(hash, key, value)
     ds.hget(hash, key, function (err, val) {
-    	assert.ifError(err)
-    	assert.equal(val, value, 'value should be equal to original value.')
-    	done()
+      assert.ifError(err)
+      assert.equal(val, value, 'value should be equal to original value.')
+      done()
     })
   })
 
@@ -43,10 +42,9 @@ describe('Test DataStorage', function () {
 
     ds.hset(hash, key, value)
     ds.hkeys(hash, function (err, keys) {
-    	assert.ifError(err)
-    	assert.include(keys, key)
-    	done()
+      assert.ifError(err)
+      assert.include(keys, key)
+      done()
     })
   })
-
 })
