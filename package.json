@@ -1,21 +1,25 @@
 {
   "name": "data-storage",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Data storage using redis, filesystem or localstorage (for client side).",
   "main": "src/dataStorage.js",
   "dependencies": {
     "events": "^1.1.0",
     "jsonfile": "^2.2.2",
     "mkpath": "^0.1.0",
-    "path-extra": "^2.0.0",
+    "path-extra": "~2.0.0",
     "redis": "^2.1.0",
     "util": "^0.10.3"
   },
   "devDependencies": {
-    "chai": "^3.3.0"
+    "chai": "^3.0.0",
+    "istanbul": "^0.3.22",
+    "mocha": "^2.2.4"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "istanbul cover _mocha -- -R spec",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
