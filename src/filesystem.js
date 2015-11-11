@@ -39,7 +39,7 @@ FileSystem.prototype.get = function (key) {
 
 FileSystem.prototype.hget = function (key, hash) {
   if (this.conf && key && hash && this.conf[key] && typeof this.conf[key] === 'object') {
-    return this.conf[key][hash]
+    return this.conf[key][hash] || null
   }
   return null
 }

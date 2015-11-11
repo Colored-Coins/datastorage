@@ -23,7 +23,7 @@ LocalStorage.prototype.hget = function (key, hash) {
   if (key && hash) {
     var hvalue = this.get(key)
     if (hvalue && typeof hvalue === 'object') {
-      return hvalue[hash]
+      return hvalue[hash] || null
     }
   }
   return null
