@@ -6,9 +6,9 @@ module.exports = FileSystem
 
 function FileSystem (callback) {
   var self = this
-  self.appPath = path.datadir('DataStorage')
-  // self.configFile = path.join(self.appPath, 'properties.conf')
-  self.configFile = './properties.conf'
+  // self.appPath = path.datadir('DataStorage')
+  self.appPath = '.'
+  self.configFile = path.join(self.appPath, 'properties.conf')
 
   if (callback) {
     jf.readFile(self.configFile, function (err, conf) {
