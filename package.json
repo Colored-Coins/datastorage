@@ -32,7 +32,7 @@
     "localstorage"
   ],
   "author": "bejavu <tal@colu.co>",
-  "license": "MIT",
+  "license": "https://www.colu.co/TOS",
   "bugs": {
     "url": "https://github.com/Colu-platform/datastorage/issues"
   },
