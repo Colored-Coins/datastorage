@@ -49,22 +49,26 @@ FileSystem.prototype.hget = function (key, hash) {
 }
 
 FileSystem.prototype.set = function (key, value, callback) {
-  if (!callback) callback = function () { }
-  if (!this.conf) return callback('No conf file loaded.')
-  if (!key) return callback('No key.')
+  function cb (err) {
+    return callback && callback(err)
+  }
+  if (!this.conf) return cb('No conf file loaded.')
+  if (!key) return cb('No key.')
   value = value || null
   this.conf[key] = value
   return safePathWrite(this.configFile, this.conf, callback)
 }
 
 FileSystem.prototype.hset = function (key, hash, value, callback) {
-  if (!callback) callback = function () { }
-  if (!this.conf) return callback('No conf file loaded.')
-  if (!key) return callback('No key.')
-  if (!hash) return callback('No hash.')
+  function cb (err) {
+    return callback && callback(err)
+  }
+  if (!this.conf) return cb('No conf file loaded.')
+  if (!key) return cb('No key.')
+  if (!hash) return cb('No hash.')
   value = value || null
   this.conf[key] = this.conf[key] || {}
-  if (typeof this.conf[key] !== 'object') return callback('Key ' + key + ' is set but not an object.')
+  if (typeof this.conf[key] !== 'object') return cb('Key ' + key + ' is set but not an object.')
   this.conf[key][hash] = value
   return safePathWrite(this.configFile, this.conf, callback)
 }

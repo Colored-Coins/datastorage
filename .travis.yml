@@ -4,15 +4,17 @@ node_js:
   - iojs
   - '0.10'
   - '0.12'
+env:
+  - DB=redis
+  - DB=none
 os:
   - linux
-  - windows
 before_script:
   - npm install -g istanbul
   - npm install -g mocha
   - npm install -g coveralls
+  - sh -c "if [[ "$DB" = 'redis' ]]; then sudo redis-server /etc/redis/redis.conf; fi"
 after_script:
   - npm run coverage
   - npm run coveralls
-services:
-  - redis-server
+  

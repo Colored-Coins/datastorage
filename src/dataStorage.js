@@ -42,8 +42,8 @@ DataStorage.prototype.init = function (cb) {
   }
   self.redisClient.on('error', function (err) {
     // if (err) console.error('Redis err: ' + err)
-    if (err) console.warn('REDIS not found: Installing REDIS will make the SDK run faster (http://redis.io/topics/quickstart)')
-    self.redisClient.end()
+    if (err && !self.hasRedis) console.warn('REDIS not found: Installing REDIS will make the SDK run faster (http://redis.io/topics/quickstart)')
+    self.redisClient.quit()
     end()
   })
   self.redisClient.on('connect', function () {
@@ -61,11 +61,15 @@ DataStorage.prototype.set = function (key, value) {
   var self = this
 
   if (self.hasRedis) {
-    self.redisClient.set(key, value)
-  } else {
-    if (self.fs) {
-      self.fs.set(key, value)
-    }
+    self.redisClient.set(key, value, function (err) {
+      if (err) {
+        self.hasRedis = false
+        self.fs = self.fs || new FileSystem()
+        self.set(key, value)
+      }
+    })
+  } else if (self.fs) {
+    self.fs.set(key, value)
   }
 }
 
@@ -85,11 +89,15 @@ DataStorage.prototype.hset = function (hash, key, value) {
   var self = this
 
   if (self.hasRedis) {
-    self.redisClient.hset(hash, key, value)
-  } else {
-    if (self.fs) {
-      self.fs.hset(hash, key, value)
-    }
+    self.redisClient.hset(hash, key, value, function (err) {
+      if (err) {
+        self.hasRedis = false
+        self.fs = self.fs || new FileSystem()
+        return self.hset(hash, key, value)
+      }
+    })
+  } else if (self.fs) {
+    self.fs.hset(hash, key, value)
   }
 }
 
