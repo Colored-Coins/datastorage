@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 var DataStorage = require('..')
 var assert = require('chai').assert
 

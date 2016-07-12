@@ -4,15 +4,25 @@ node_js:
   - iojs
   - '0.10'
   - '0.12'
+env:
+  - DB=redis
+  - DB=none
 os:
   - linux
-  - windows
+  - osx
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git clone https://github.com/creationix/nvm.git /tmp/.nvm; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then source /tmp/.nvm/nvm.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then nvm install $TRAVIS_NODE_VERSION; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then nvm use --delete-prefix $TRAVIS_NODE_VERSION; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && "$DB" = 'redis' ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && "$DB" = 'redis' ]]; then brew install redis; fi
 before_script:
   - npm install -g istanbul
   - npm install -g mocha
   - npm install -g coveralls
+  - if [[ "$DB" = 'redis' ]]; then redis-server; fi &
 after_script:
   - npm run coverage
   - npm run coveralls
-services:
-  - redis-server
+  
