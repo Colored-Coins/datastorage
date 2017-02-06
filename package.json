@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Colu-platform/datastorage.git"
+    "url": "git+https://github.com/Colored-Coins/datastorage.git"
   },
   "keywords": [
     "redis",
@@ -31,10 +31,20 @@
     "filesystem",
     "localstorage"
   ],
-  "author": "bejavu <tal@colu.co>",
-  "license": "https://www.colu.co/TOS",
+  "author": "bejavu <tal@colu.com>",
+  "contributors": [
+    {
+      "name": "bejavu",
+      "email": "tal@colu.com"
+    },
+    {
+      "name": "oleiba",
+      "email": "oded@colu.com"
+    }
+  ],
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Colu-platform/datastorage/issues"
+    "url": "https://github.com/Colored-Coins/datastorage/issues"
   },
-  "homepage": "https://github.com/Colu-platform/datastorage#readme"
+  "homepage": "https://github.com/Colored-Coins/datastorage#readme"
 }
