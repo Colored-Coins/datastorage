@@ -8,10 +8,39 @@
 ```sh
 $ npm i data-storage
 ```
-
-### API's
+### Usage
 
 ```js
+var DataStorage = require('data-storage')
+var ds = new DataStorage()
+ds.once('connect', function () {
+  console.log('data-storage is now initialized')
+})
+ds.init()
+```
+
+### API
+
+#### Constructor:
+```js
+DataStorage(settings)
+```
+where `settings` is an object of these properties:
+```js
+{
+  redisPort: 6379,
+  redisHost: '127.0.0.1',
+  redisUrl: '127.0.0.1:6379'  // if specified, redisPort and redisHost are ignored
+}
+```
+
+#### Member methods:
+```js
+DataStorage.prototype.set(key, value)
+DataStorage.prototype.get(key, callback)
+DataStorage.prototype.hset(hash, key, callback)
+DataStorage.prototype.hget(hash, key, callback)
+DataStorage.prototype.hkeys(hash, callback)
 ```
 
 ### Testing
