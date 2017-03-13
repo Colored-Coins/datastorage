@@ -48,3 +48,7 @@ DataStorage.prototype.hkeys(hash, callback)
 ```sh
 $ mocha
 ```
+
+### License
+
+[Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0)
